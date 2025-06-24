@@ -12,14 +12,14 @@ const mix = require('laravel-mix');
  | -----------------------------------------------
  | HOW TO USE IN YOUR STRATA CONSUMING APPLICATION
  | -----------------------------------------------
- | Using your view with mix('css/skeleton.css', 'vendor/skeleton')
+ | Using your view with mix('css/google-sso.css', 'vendor/google-sso')
  | Be sure to publish your assets first, see docs for more information
  | https://docs.3zbrands.dev/strata/index/assets-and-resources#publishing-your-assets
  |
  */
 
 mix
-    .postCss('resources/css/skeleton.css', 'css', [require('tailwindcss')('tailwind.config.js')])
-    .js('resources/js/skeleton.js', 'js')
+    .postCss('resources/css/google-sso.css', 'css', [require('tailwindcss')('tailwind.config.js')])
+    .js('resources/js/google-sso.js', 'js')
     .version()
     .setPublicPath('public/')

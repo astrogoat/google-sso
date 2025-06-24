@@ -1,3 +1,4 @@
 <?php
 
-// Here you can add routes for the backend.
+Route::get('google', Astrogoat\GoogleSSO\Http\Controllers\GoogleSSOController::class.'@redirectToProvider')->name('google');
+//Route::get('google/callback', );

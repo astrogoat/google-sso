@@ -1,18 +1,18 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "astrogoat/google-sso",
+    "description": "A GoogleSSO app for Strata",
     "keywords": [
-        ":vendor_name",
+        "astrogoat",
         "laravel",
         "strata",
-        ":package_slug"
+        "google-sso"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/astrogoat/google-sso",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Brett Michalick",
+            "email": "michalick.brett@gmail.com",
             "role": "Developer"
         }
     ],
@@ -25,8 +25,9 @@
     "require": {
         "php": "^8.3",
         "astrogoat/strata": "^0.7.7|^0.8.0",
-        "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^10.0|^11.0"
+        "illuminate/contracts": "^10.0|^11.0",
+        "laravel/socialite": "^5.21",
+        "spatie/laravel-package-tools": "^1.4.3"
     },
     "require-dev": {
         "nunomaduro/collision": "^5.3|^7.0|^8.0",
@@ -37,13 +38,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Astrogoat\\GoogleSSO\\": "src",
+            "Astrogoat\\GoogleSSO\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Astrogoat\\GoogleSSO\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -51,15 +52,19 @@
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "vaimo/composer-patches": true
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Astrogoat\\GoogleSSO\\GoogleSSOServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "GoogleSSO": "Astrogoat\\GoogleSSO\\GoogleSSOFacade"
             }
         }
     },
