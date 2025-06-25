@@ -3,6 +3,7 @@
 namespace Astrogoat\GoogleSSO\Http\Controllers;
 
 use Astrogoat\GoogleSSO\Settings\GoogleSSOSettings;
+use Helix\Lego\Models\User;
 use Helix\Lego\Providers\RouteServiceProvider;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
@@ -11,7 +12,6 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\GoogleProvider;
-use Helix\Lego\Models\User;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GoogleSSOController extends Controller
@@ -25,7 +25,7 @@ class GoogleSSOController extends Controller
     {
         $settings = resolve(GoogleSSOSettings::class);
 
-        throw_if(!$settings->enabled, NotFoundHttpException::class);
+        throw_if(! $settings->enabled, NotFoundHttpException::class);
 
         return $this->getProvider($settings)->redirect();
     }
@@ -39,20 +39,20 @@ class GoogleSSOController extends Controller
     {
         $settings = resolve(GoogleSSOSettings::class);
 
-        throw_if(!$settings->enabled, NotFoundHttpException::class);
+        throw_if(! $settings->enabled, NotFoundHttpException::class);
 
         $googleUser = $this->getProvider($settings)->stateless()->user();
         $user = User::where('email', $googleUser->email)->first();
 
-        if (!$user ) {
+        if (! $user) {
             $failureReason[] = 'Could not find an account please contact an administrator.';
         }
 
-        if ($invalidDomain = !Str::contains($user, Arr::map(explode(',', $settings->approved_domains), fn ($domain) => trim($domain)))) {
+        if ($invalidDomain = ! Str::contains($user, Arr::map(explode(',', $settings->approved_domains), fn ($domain) => trim($domain)))) {
             $failureReason[] = 'You must use an approved domain to login with google.';
         }
 
-        if ($invalidDomain || !$user) {
+        if ($invalidDomain || ! $user) {
             throw ValidationException::withMessages([
                 'email' => implode(' ', $failureReason),
             ])->redirectTo('/login');
@@ -62,6 +62,7 @@ class GoogleSSOController extends Controller
         $user->save();
 
         Auth::login($user);
+
         return redirect(RouteServiceProvider::$home);
     }
 

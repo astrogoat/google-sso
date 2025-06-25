@@ -2,9 +2,9 @@
 
 namespace Astrogoat\GoogleSSO\Tests;
 
+use Astrogoat\GoogleSSO\GoogleSSOServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Astrogoat\GoogleSSO\GoogleSSOServiceProvider;
 
 class TestCase extends Orchestra
 {
