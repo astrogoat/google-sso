@@ -2,12 +2,12 @@
 
 namespace Astrogoat\GoogleSSO;
 
+use Astrogoat\GoogleSSO\Settings\GoogleSSOSettings;
 use Helix\Lego\Apps\App;
 use Helix\Lego\Apps\AppPackageServiceProvider;
 use Laravel\Socialite\Contracts\Factory;
 use Laravel\Socialite\SocialiteManager;
 use Spatie\LaravelPackageTools\Package;
-use Astrogoat\GoogleSSO\Settings\GoogleSSOSettings;
 
 class GoogleSSOServiceProvider extends AppPackageServiceProvider
 {

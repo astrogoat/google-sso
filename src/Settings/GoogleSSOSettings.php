@@ -7,11 +7,10 @@ use Illuminate\Validation\Rule;
 
 class GoogleSSOSettings extends AppSettings
 {
-     public string $client_id;
-     public string $client_secret;
-     public bool $force_password_reset;
-     public string $approved_domains;
-
+    public string $client_id;
+    public string $client_secret;
+    public bool $force_password_reset;
+    public string $approved_domains;
 
     public function rules(): array
     {
