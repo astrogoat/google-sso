@@ -10,6 +10,7 @@ return new class extends SettingsMigration
         $this->migrator->add('google-sso.client_id', "");
         $this->migrator->add('google-sso.client_secret', "", true);
         $this->migrator->add('google-sso.force_password_reset', false);
+        $this->migrator->add('google-sso.approved_domains', false);
     }
 
     public function down()
@@ -18,5 +19,6 @@ return new class extends SettingsMigration
         $this->migrator->delete('google-sso.client_id');
         $this->migrator->delete('google-sso.client_secret');
         $this->migrator->delete('google-sso.force_password_reset');
+        $this->migrator->delete('google-sso.approved_domains');
     }
 };
